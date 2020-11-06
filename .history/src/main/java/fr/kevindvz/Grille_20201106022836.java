@@ -111,7 +111,6 @@ public class Grille {
             } else {
                 System.out.println("Personne n'a gagné, dommage !");
             }
-            finDePartie = interaction.invitNouvellePartie();
         }
         System.out.println("Merci d'avoir joué, à bientôt :)");
     }

@@ -81,7 +81,6 @@ public class Grille {
         boolean finDePartie = false;
         Interaction interaction = new Interaction();
         this.listeJoueur = interaction.creationJoueur();
-        grille = new Pion[3][3];
 
         while (finDePartie == false) {
             int tourDejeux = 0;
@@ -111,7 +110,6 @@ public class Grille {
             } else {
                 System.out.println("Personne n'a gagné, dommage !");
             }
-            finDePartie = interaction.invitNouvellePartie();
         }
         System.out.println("Merci d'avoir joué, à bientôt :)");
     }

@@ -78,41 +78,36 @@ public class Grille {
 
     public void fairePartie() {
 
-        boolean finDePartie = false;
+        int tourDejeux = 0;
+        int resultatVerif = 0;
         Interaction interaction = new Interaction();
         this.listeJoueur = interaction.creationJoueur();
-        grille = new Pion[3][3];
 
-        while (finDePartie == false) {
-            int tourDejeux = 0;
-            int resultatVerif = 0;
-            while (this.grilleRemplie == false || resultatVerif == 3 || resultatVerif == -3) {
-                tourDejeux++;
-                interaction.afficherGrille(this.grille);
+        while (this.grilleRemplie == false || resultatVerif == 3 || resultatVerif == -3) {
+            tourDejeux++;
+            interaction.afficherGrille(this.grille);
 
-                if (tourDejeux % 2 == 0) {
-                    int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[1]);
-                    this.grille[coordonneeJeu % 3][1].setPion(this.listeJoueur[1].symbole);
-                } else {
-                    int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[0]);
-                    this.grille[coordonneeJeu % 3][2].setPion(this.listeJoueur[0].symbole);
-                }
-                resultatVerif = this.verifierGrille();
-                interaction.viderEcran();
-                System.out.println(resultatVerif);
-
-            }
-            if (resultatVerif == 3) {
-                System.out.println("Bravo joueur 1 !");
-                this.listeJoueur[0].points++;
-            } else if (resultatVerif == -3) {
-                System.out.println("Bravo joueur 2 !");
-                this.listeJoueur[1].points++;
+            if (tourDejeux % 2 == 0) {
+                int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[1]);
+                this.grille[coordonneeJeu % 3][1].setPion(this.listeJoueur[1].symbole);
             } else {
-                System.out.println("Personne n'a gagné, dommage !");
+                int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[0]);
+                this.grille[coordonneeJeu % 3][2].setPion(this.listeJoueur[0].symbole);
             }
-            finDePartie = interaction.invitNouvellePartie();
+            resultatVerif = this.verifierGrille();
+            interaction.viderEcran();
+            System.out.println(resultatVerif);
+
         }
-        System.out.println("Merci d'avoir joué, à bientôt :)");
+        if (resultatVerif == 3) {
+            System.out.println("Bravo joueur 1 !");
+            this.listeJoueur[0].points++;
+        } else if (resultatVerif == -3) {
+            System.out.println("Bravo joueur 2 !");
+            this.listeJoueur[1].points++;
+        } else {
+            System.out.println("Personne n'a gagné, dommage !");
+        }
+
     }
 }
