@@ -20,7 +20,6 @@ public class Grille {
                     grille[i][j] = new Pion();
                 } else {
                     grille[i][j].symbole = ' ';
-                    this.grilleRemplie = false;
                 }
             }
         }

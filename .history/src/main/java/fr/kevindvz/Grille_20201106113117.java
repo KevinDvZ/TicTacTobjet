@@ -14,14 +14,9 @@ public class Grille {
     }
 
     public void initialiserGrille() {
-        for (int i = 0; i < this.grille.length; i++) {
-            for (int j = 0; j < this.grille.length; j++) {
-                if (this.grille[i][j] == null) {
-                    grille[i][j] = new Pion();
-                } else {
-                    grille[i][j].symbole = ' ';
-                    this.grilleRemplie = false;
-                }
+        for (int i = 0; i < grille.length; i++) {
+            for (int j = 0; j < grille.length; j++) {
+                grille[i][j] = new Pion();
             }
         }
     }
@@ -53,18 +48,24 @@ public class Grille {
                 default:
                     break;
             }
-            // test des colonnes
-            switch (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur) {
+            switch (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur == 3) {
                 case 3:
                     retour = 1;
                     this.grilleRemplie = true;
-                case -3:
-                    retour = 2;
-                    this.grilleRemplie = true;
+
                     break;
 
                 default:
                     break;
+            }
+            // test des colonnes
+            if (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur == 3) {
+                retour = 1;
+                this.grilleRemplie = true;
+            }
+            if (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur == -3) {
+                retour = 2;
+                this.grilleRemplie = true;
             }
 
         }
@@ -118,13 +119,11 @@ public class Grille {
         boolean finDePartie = false;
         Interaction interaction = new Interaction();
         this.listeJoueur = interaction.creationJoueur();
-        int tourDejeux = 0;
-        int resultatVerif = 0;
 
         while (finDePartie == false) {
-            this.initialiserGrille();
-            resultatVerif = 0;
-            while (this.grilleRemplie == false) {
+            int tourDejeux = 0;
+            int resultatVerif = 0;
+            while (this.grilleRemplie == false || resultatVerif == 3 || resultatVerif == -3) {
                 tourDejeux++;
                 interaction.afficherGrille(this.grille);
 
@@ -132,7 +131,6 @@ public class Grille {
                     int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[1]);
                     Pion pionvise = (Pion) map.get(coordonneeJeu);
                     pionvise.setPion(this.listeJoueur[1].symbole);
-                    System.out.println(pionvise.symbole);
                 } else {
                     int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[0]);
                     Pion pionvise = (Pion) map.get(coordonneeJeu);
@@ -144,11 +142,9 @@ public class Grille {
 
             }
             if (resultatVerif == 1) {
-                interaction.afficherGrille(this.grille);
                 System.out.println("Bravo joueur 1 !");
                 this.listeJoueur[0].points++;
             } else if (resultatVerif == 2) {
-                interaction.afficherGrille(this.grille);
                 System.out.println("Bravo joueur 2 !");
                 this.listeJoueur[1].points++;
             } else if (resultatVerif == 3) {

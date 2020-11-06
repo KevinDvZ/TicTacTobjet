@@ -16,12 +16,7 @@ public class Grille {
     public void initialiserGrille() {
         for (int i = 0; i < this.grille.length; i++) {
             for (int j = 0; j < this.grille.length; j++) {
-                if (this.grille[i][j] == null) {
-                    grille[i][j] = new Pion();
-                } else {
-                    grille[i][j].symbole = ' ';
-                    this.grilleRemplie = false;
-                }
+                grille[i][j] = new Pion();
             }
         }
     }
@@ -119,12 +114,11 @@ public class Grille {
         Interaction interaction = new Interaction();
         this.listeJoueur = interaction.creationJoueur();
         int tourDejeux = 0;
-        int resultatVerif = 0;
 
         while (finDePartie == false) {
             this.initialiserGrille();
-            resultatVerif = 0;
-            while (this.grilleRemplie == false) {
+            int resultatVerif = 0;
+            while (this.grilleRemplie == false || resultatVerif == 3 || resultatVerif == -3) {
                 tourDejeux++;
                 interaction.afficherGrille(this.grille);
 
@@ -132,7 +126,6 @@ public class Grille {
                     int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[1]);
                     Pion pionvise = (Pion) map.get(coordonneeJeu);
                     pionvise.setPion(this.listeJoueur[1].symbole);
-                    System.out.println(pionvise.symbole);
                 } else {
                     int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[0]);
                     Pion pionvise = (Pion) map.get(coordonneeJeu);

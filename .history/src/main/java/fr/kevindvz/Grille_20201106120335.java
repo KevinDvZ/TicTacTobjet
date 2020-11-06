@@ -16,11 +16,10 @@ public class Grille {
     public void initialiserGrille() {
         for (int i = 0; i < this.grille.length; i++) {
             for (int j = 0; j < this.grille.length; j++) {
-                if (this.grille[i][j] == null) {
+                if (this.grille == null) {
                     grille[i][j] = new Pion();
                 } else {
                     grille[i][j].symbole = ' ';
-                    this.grilleRemplie = false;
                 }
             }
         }

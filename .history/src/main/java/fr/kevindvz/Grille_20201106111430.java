@@ -14,14 +14,9 @@ public class Grille {
     }
 
     public void initialiserGrille() {
-        for (int i = 0; i < this.grille.length; i++) {
-            for (int j = 0; j < this.grille.length; j++) {
-                if (this.grille[i][j] == null) {
-                    grille[i][j] = new Pion();
-                } else {
-                    grille[i][j].symbole = ' ';
-                    this.grilleRemplie = false;
-                }
+        for (int i = 0; i < grille.length; i++) {
+            for (int j = 0; j < grille.length; j++) {
+                grille[i][j] = new Pion();
             }
         }
     }
@@ -39,32 +34,22 @@ public class Grille {
                 presenceTotal += this.grille[i][j].presence;
             }
             // test des lignes
-            switch (this.grille[i][0].valeur + this.grille[i][1].valeur + this.grille[i][2].valeur) {
-                case 3:
-                    retour = 1;
-                    this.grilleRemplie = true;
-
-                case -3:
-                    retour = 2;
-                    this.grilleRemplie = true;
-
-                    break;
-
-                default:
-                    break;
+            if (this.grille[i][0].valeur + this.grille[i][1].valeur + this.grille[i][2].valeur == 3) {
+                retour = 1;
+                this.grilleRemplie = true;
+            }
+            if (this.grille[i][0].valeur + this.grille[i][1].valeur + this.grille[i][2].valeur == -3) {
+                retour = 2;
+                this.grilleRemplie = true;
             }
             // test des colonnes
-            switch (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur) {
-                case 3:
-                    retour = 1;
-                    this.grilleRemplie = true;
-                case -3:
-                    retour = 2;
-                    this.grilleRemplie = true;
-                    break;
-
-                default:
-                    break;
+            if (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur == 3) {
+                retour = 1;
+                this.grilleRemplie = true;
+            }
+            if (this.grille[0][i].valeur + this.grille[1][i].valeur + this.grille[2][i].valeur == -3) {
+                retour = 2;
+                this.grilleRemplie = true;
             }
 
         }
@@ -100,11 +85,11 @@ public class Grille {
         map.put(1, this.grille[0][0]);
         map.put(2, this.grille[0][1]);
         map.put(3, this.grille[0][2]);
-        map.put(4, this.grille[1][0]);
+        map.put(4, this.grille[0][0]);
         map.put(5, this.grille[1][1]);
-        map.put(6, this.grille[1][2]);
-        map.put(7, this.grille[2][0]);
-        map.put(8, this.grille[2][1]);
+        map.put(6, this.grille[2][2]);
+        map.put(7, this.grille[0][0]);
+        map.put(8, this.grille[1][1]);
         map.put(9, this.grille[2][2]);
 
         return map;
@@ -118,13 +103,11 @@ public class Grille {
         boolean finDePartie = false;
         Interaction interaction = new Interaction();
         this.listeJoueur = interaction.creationJoueur();
-        int tourDejeux = 0;
-        int resultatVerif = 0;
 
         while (finDePartie == false) {
-            this.initialiserGrille();
-            resultatVerif = 0;
-            while (this.grilleRemplie == false) {
+            int tourDejeux = 0;
+            int resultatVerif = 0;
+            while (this.grilleRemplie == false || resultatVerif == 3 || resultatVerif == -3) {
                 tourDejeux++;
                 interaction.afficherGrille(this.grille);
 
@@ -132,7 +115,6 @@ public class Grille {
                     int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[1]);
                     Pion pionvise = (Pion) map.get(coordonneeJeu);
                     pionvise.setPion(this.listeJoueur[1].symbole);
-                    System.out.println(pionvise.symbole);
                 } else {
                     int coordonneeJeu = interaction.recupererNumeroCase(this.listeJoueur[0]);
                     Pion pionvise = (Pion) map.get(coordonneeJeu);
@@ -143,15 +125,13 @@ public class Grille {
                 System.out.println(resultatVerif);
 
             }
-            if (resultatVerif == 1) {
-                interaction.afficherGrille(this.grille);
+            if (resultatVerif == 3) {
                 System.out.println("Bravo joueur 1 !");
                 this.listeJoueur[0].points++;
-            } else if (resultatVerif == 2) {
-                interaction.afficherGrille(this.grille);
+            } else if (resultatVerif == -3) {
                 System.out.println("Bravo joueur 2 !");
                 this.listeJoueur[1].points++;
-            } else if (resultatVerif == 3) {
+            } else {
                 System.out.println("Personne n'a gagné, dommage !");
             }
             finDePartie = interaction.invitNouvellePartie();
