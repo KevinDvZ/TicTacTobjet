@@ -51,7 +51,7 @@ public class Interaction {
         for (int i = 0; i < grille.length; i++) {
             System.out.print("\n-------------\n| ");
             for (int j = 0; j < grille.length; j++) {
-                char emplacement = grille[i][j] == null ? 'N' : grille[i][j].symbole;
+                char emplacement = grille[i][j] == null ? ' ' : 'p';
                 System.out.print(emplacement + " | ");
             }
         }
@@ -73,12 +73,9 @@ public class Interaction {
         return coordonneeInt;
     }
 
-    public void messageFinPartie(String etatGrille, Joueur[] listeJoueur) {
+    public void messageFinPartie(String etatGrille) {
         String messageFinPartie = etatGrille == "bloquée" ? "La grille est bloquée, personne n'a gagné !" : etatGrille;
         System.out.println(messageFinPartie);
-        System.out.println("Score des joueurs ----> Joueur 1 : " + listeJoueur[0].points + " points");
-        System.out.println("Joueur 2 : " + listeJoueur[1].points + " points");
-
     }
 
     public Boolean invitNouvellePartie() {

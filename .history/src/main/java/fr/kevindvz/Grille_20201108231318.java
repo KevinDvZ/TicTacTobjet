@@ -51,59 +51,45 @@ public class Grille {
     // Verification de la grille en cherchant si il y a des combinaison gagnantes
 
     private void verifierGrille(HashMap<Integer, Pion> map, int tourDejeux) {
+        tourDejeux++;
 
         if (map.get(1).symbole != ' ') {
             if (map.get(1).symbole == map.get(2).symbole && map.get(2).symbole == map.get(3).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(1).symbole == map.get(4).symbole && map.get(4).symbole == map.get(7).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
         }
         if (map.get(9).symbole != ' ') {
             if (map.get(9).symbole == map.get(6).symbole && map.get(6).symbole == map.get(3).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(9).symbole == map.get(8).symbole && map.get(8).symbole == map.get(7).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
         }
         if (map.get(5).symbole != ' ') {
 
             if (map.get(5).symbole == map.get(1).symbole && map.get(5).symbole == map.get(9).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(5).symbole == map.get(4).symbole && map.get(5).symbole == map.get(6).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(5).symbole == map.get(7).symbole && map.get(5).symbole == map.get(3).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(5).symbole == map.get(2).symbole && map.get(5).symbole == map.get(8).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
-            }
-
-        }
-
-        if (this.etatGrille == "en cours") {
-            int compte = 0;
-            for (Pion[] grille : this.grille) {
-                for (Pion pion : grille) {
-                    if (pion.symbole != ' ') {
-                        compte++;
-                    }
-                }
-            }
-            if (compte == 9) {
-                this.etatGrille = "bloquée";
             }
         }
 

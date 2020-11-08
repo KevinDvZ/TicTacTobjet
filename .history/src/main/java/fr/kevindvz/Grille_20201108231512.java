@@ -90,21 +90,6 @@ public class Grille {
                 this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
-
-        }
-
-        if (this.etatGrille == "en cours") {
-            int compte = 0;
-            for (Pion[] grille : this.grille) {
-                for (Pion pion : grille) {
-                    if (pion.symbole != ' ') {
-                        compte++;
-                    }
-                }
-            }
-            if (compte == 9) {
-                this.etatGrille = "bloquée";
-            }
         }
 
     }

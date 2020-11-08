@@ -94,16 +94,13 @@ public class Grille {
         }
 
         if (this.etatGrille == "en cours") {
-            int compte = 0;
+            int compteGrille = 0;
             for (Pion[] grille : this.grille) {
                 for (Pion pion : grille) {
                     if (pion.symbole != ' ') {
-                        compte++;
+                        compteGrille++;
                     }
                 }
-            }
-            if (compte == 9) {
-                this.etatGrille = "bloquée";
             }
         }
 

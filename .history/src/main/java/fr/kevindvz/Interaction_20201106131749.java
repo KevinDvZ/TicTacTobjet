@@ -2,13 +2,6 @@ package fr.kevindvz;
 
 import java.util.Scanner;
 
-/*
-Classe abstraite comportant des méthodes affichant l'état du jeu et proposant l'intéraction avec le joueur
-Piste d'amélioration à apporter : 
-utiliser une interface
-
-*/
-
 public class Interaction {
 
     Scanner clavier = new Scanner(System.in);
@@ -51,14 +44,13 @@ public class Interaction {
         for (int i = 0; i < grille.length; i++) {
             System.out.print("\n-------------\n| ");
             for (int j = 0; j < grille.length; j++) {
-                char emplacement = grille[i][j] == null ? 'N' : grille[i][j].symbole;
-                System.out.print(emplacement + " | ");
+                System.out.print(grille[i][j].symbole + " | ");
             }
         }
         System.out.print("\n-------------\n");
     }
 
-    // Invitation choix de la case
+    // Liste des interactions
     public int recupererNumeroCase(Joueur joueurActuel) {
         System.out.println("Inscrivez la case à remplir, " + joueurActuel.name);
         String CoordoneeClavier = clavier.nextLine();
@@ -71,13 +63,6 @@ public class Interaction {
 
         int coordonneeInt = Integer.parseInt(CoordoneeClavier);
         return coordonneeInt;
-    }
-
-    public void messageFinPartie(String etatGrille, Joueur[] listeJoueur) {
-        String messageFinPartie = etatGrille == "bloquée" ? "La grille est bloquée, personne n'a gagné !" : etatGrille;
-        System.out.println(messageFinPartie);
-        System.out.println("Score des joueurs ----> Joueur 1 : " + listeJoueur[0].points + " points");
-        System.out.println("Joueur 2 : " + listeJoueur[1].points + " points");
 
     }
 

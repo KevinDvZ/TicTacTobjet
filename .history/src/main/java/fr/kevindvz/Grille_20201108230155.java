@@ -54,56 +54,41 @@ public class Grille {
 
         if (map.get(1).symbole != ' ') {
             if (map.get(1).symbole == map.get(2).symbole && map.get(2).symbole == map.get(3).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(1).symbole == map.get(4).symbole && map.get(4).symbole == map.get(7).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
         }
         if (map.get(9).symbole != ' ') {
             if (map.get(9).symbole == map.get(6).symbole && map.get(6).symbole == map.get(3).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(9).symbole == map.get(8).symbole && map.get(8).symbole == map.get(7).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
         }
         if (map.get(5).symbole != ' ') {
 
             if (map.get(5).symbole == map.get(1).symbole && map.get(5).symbole == map.get(9).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(5).symbole == map.get(4).symbole && map.get(5).symbole == map.get(6).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(5).symbole == map.get(7).symbole && map.get(5).symbole == map.get(3).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
             }
             if (map.get(5).symbole == map.get(2).symbole && map.get(5).symbole == map.get(8).symbole) {
-                this.etatGrille = "BRAVO ! Joueur " + (tourDejeux + 1) + " gagne !";
+                this.etatGrille = "BRAVO ! Joueur " + tourDejeux + " gagne !";
                 this.listeJoueur[tourDejeux % 2].points++;
-            }
-
-        }
-
-        if (this.etatGrille == "en cours") {
-            int compte = 0;
-            for (Pion[] grille : this.grille) {
-                for (Pion pion : grille) {
-                    if (pion.symbole != ' ') {
-                        compte++;
-                    }
-                }
-            }
-            if (compte == 9) {
-                this.etatGrille = "bloquée";
             }
         }
 
@@ -131,12 +116,15 @@ public class Grille {
                 Pion emplacementvise = (Pion) map.get(coordonneeJeu);
 
                 emplacementvise.setPion(this.listeJoueur[tourDejeux % 2]);
+
+                // emplacementvise.setPion(this.listeJoueur[tourDejeux % 2]);
                 this.verifierGrille(map, tourDejeux % 2);
                 interaction.viderEcran();
+                System.out.println(this.etatGrille);
 
             }
             interaction.afficherGrille(this.grille);
-            interaction.messageFinPartie(etatGrille, this.listeJoueur);
+            System.out.println(this.etatGrille);
             finDePartie = interaction.invitNouvellePartie();
         }
         System.out.println("Merci d'avoir joué, à bientôt :)");

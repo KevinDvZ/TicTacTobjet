@@ -4,7 +4,9 @@ public class Pion {
     char symbole;
 
     public Pion() {
-        this.symbole = ' ';
+
+        this.symbole = 'p';
+
     }
 
     // le symbole du pion differera selon le joueur qui le "set"
